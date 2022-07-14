@@ -123,11 +123,13 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-  if (board[0].every(y => y.every(x => x !== null))) { endGame('Tie!'); };
+  if (board[0].every(x => x !== null)) { endGame('Tie!'); };
+  //interesting that this broke the app...
 
+  
   // switch players
   // switch currPlayer 1 <-> 2
-  currPlayer = currPlayer === 1 ?  2 : 1;
+  currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -140,17 +142,14 @@ function checkForWin() {
    * currPlayer
    */
   function _win(cells) {
-    
-    for (let [y,x] of cells) {
+
+    for (let [y, x] of cells) {
       if (x >= WIDTH || y >= HEIGHT || board[y][x] !== currPlayer) {
         return false;
-      } 
+      }
     }
-    
-    return true;
-    
 
-    // return cells.every(cell => cell === currPlayer);
+    return true;
 
   }
 
